@@ -6,6 +6,7 @@ import CategoriesSidebar from '@/components/CategoriesSidebar';
 import TrendingPosts from '@/components/TrendingPosts';
 import NewsletterSignup from '@/components/NewsletterSignup';
 import Pagination from '@/components/Pagination';
+import { useToast } from "@/hooks/use-toast"
 
 const articles = [
   {
@@ -89,6 +90,16 @@ const articles = [
 ];
 
 const Index = () => {
+  const { toast } = useToast();
+
+  const handleNewsletterSignup = (email: string, consent: boolean) => {
+    console.log('Newsletter signup:', { email, consent });
+    toast({
+      title: "Successfully subscribed!",
+      description: "Thank you for subscribing to our newsletter.",
+    });
+  };
+
   return (
     <div className="min-h-screen bg-gray-50 font-poppins">
       <Header />
@@ -105,7 +116,6 @@ const Index = () => {
                 <ArticleCard
                   key={index}
                   {...article}
-                  featured={false}
                 />
               ))}
             </div>
@@ -117,7 +127,7 @@ const Index = () => {
           <div className="space-y-8">
             <CategoriesSidebar />
             <TrendingPosts />
-            <NewsletterSignup />
+            <NewsletterSignup onSignup={handleNewsletterSignup} />
           </div>
         </div>
       </div>
