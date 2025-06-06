@@ -1,9 +1,9 @@
-
 import { useParams } from 'react-router-dom';
 import Header from '@/components/Header';
 import CategoriesSidebar from '@/components/CategoriesSidebar';
 import TrendingPosts from '@/components/TrendingPosts';
 import NewsletterSignup from '@/components/NewsletterSignup';
+import MobileAppPromo from '@/components/MobileAppPromo';
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
@@ -244,6 +244,11 @@ const ArticleView = () => {
             <TrendingPosts />
             <NewsletterSignup onSignup={handleNewsletterSignup} />
           </div>
+        </div>
+        
+        {/* Mobile App Promo Section */}
+        <div className="mt-16">
+          <MobileAppPromo />
         </div>
       </div>
     </div>
