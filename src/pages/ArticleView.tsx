@@ -4,6 +4,7 @@ import CategoriesSidebar from '@/components/CategoriesSidebar';
 import TrendingPosts from '@/components/TrendingPosts';
 import NewsletterSignup from '@/components/NewsletterSignup';
 import MobileAppPromo from '@/components/MobileAppPromo';
+import LatestStories from '@/components/LatestStories';
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
@@ -249,6 +250,11 @@ const ArticleView = () => {
         {/* Mobile App Promo Section */}
         <div className="mt-16">
           <MobileAppPromo />
+        </div>
+        
+        {/* Latest Stories Section */}
+        <div className="mt-12">
+          <LatestStories />
         </div>
       </div>
     </div>
