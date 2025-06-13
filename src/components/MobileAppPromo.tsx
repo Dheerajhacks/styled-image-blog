@@ -4,7 +4,7 @@ import { Smartphone, Users, Calendar } from 'lucide-react';
 
 const MobileAppPromo = () => {
   return (
-    <div className="bg-white rounded-lg p-8 shadow-sm">
+    <div className="bg-white rounded-lg p-8 shadow-sm max-w-4xl mx-auto">
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-6 text-white">
         <div className="flex flex-col lg:flex-row items-start justify-between">
           {/* Left side content - further reduced width */}
