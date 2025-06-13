@@ -7,8 +7,8 @@ const MobileAppPromo = () => {
     <div className="bg-white rounded-lg p-8 shadow-sm">
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-6 text-white">
         <div className="flex flex-col lg:flex-row items-start justify-between">
-          {/* Left side content - reduced width */}
-          <div className="flex-1 mb-4 lg:mb-0 lg:mr-8 max-w-md">
+          {/* Left side content - further reduced width */}
+          <div className="flex-1 mb-4 lg:mb-0 lg:mr-8 max-w-sm">
             <h2 className="text-xl font-bold mb-3">
               Stay Connected with Campus Life
             </h2>
