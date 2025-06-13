@@ -6,7 +6,7 @@ const MobileAppPromo = () => {
   return (
     <div className="bg-white rounded-lg p-8 shadow-sm">
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg p-6 text-white">
-        <div className="flex flex-col lg:flex-row items-start justify-between">
+        <div className="flex flex-col lg:flex-row items-center justify-between">
           {/* Left side content */}
           <div className="flex-1 mb-4 lg:mb-0 lg:mr-6">
             <h2 className="text-xl font-bold mb-3">
@@ -44,7 +44,7 @@ const MobileAppPromo = () => {
           </div>
           
           {/* Right side - Phone mockup */}
-          <div className="flex-shrink-0 self-start">
+          <div className="flex-shrink-0">
             <div className="bg-white bg-opacity-20 rounded-xl p-4">
               <div className="bg-white rounded-lg p-3 w-32 h-56 flex flex-col">
                 <div className="bg-blue-600 rounded-lg p-2 text-white text-center mb-3">
