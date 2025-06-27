@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Star, Users, BarChart3, MessageSquare } from 'lucide-react';
+import { Star, Users, BarChart3, MessageSquare, UserCheck, TrendingUp } from 'lucide-react';
 import Header from '@/components/Header';
 
 const AmbassadorPage = () => {
@@ -43,40 +43,40 @@ const AmbassadorPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <div className="text-center">
               <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="w-8 h-8 text-gray-600" />
+                <Users className="w-8 h-8 text-gray-700" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Community Building</h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-sm leading-relaxed">
                 Create and nurture vibrant campus communities through events and activities
               </p>
             </div>
             
             <div className="text-center">
               <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MessageSquare className="w-8 h-8 text-gray-600" />
+                <UserCheck className="w-8 h-8 text-gray-700" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Student Engagement</h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-sm leading-relaxed">
                 Foster meaningful connections and facilitate student interactions
               </p>
             </div>
             
             <div className="text-center">
               <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <MessageSquare className="w-8 h-8 text-gray-600" />
+                <MessageSquare className="w-8 h-8 text-gray-700" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Communication</h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-sm leading-relaxed">
                 Share updates and maintain clear channels of communication
               </p>
             </div>
             
             <div className="text-center">
               <div className="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <BarChart3 className="w-8 h-8 text-gray-600" />
+                <TrendingUp className="w-8 h-8 text-gray-700" />
               </div>
               <h3 className="text-xl font-semibold text-gray-900 mb-3">Promotion</h3>
-              <p className="text-gray-600">
+              <p className="text-gray-600 text-sm leading-relaxed">
                 Spread awareness and grow the ClubChat community on campus
               </p>
             </div>
