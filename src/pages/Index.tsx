@@ -77,6 +77,90 @@ const articles = [
   }
 ];
 
+// Layout 1: Standard grid (2 columns)
+const Layout1 = ({ articles }: { articles: typeof articles }) => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+    {articles.map((article) => (
+      <ArticleCard key={article.id} {...article} />
+    ))}
+  </div>
+);
+
+// Layout 2: Featured + List (one large, one small)
+const Layout2 = ({ articles }: { articles: typeof articles }) => (
+  <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
+    <div className="lg:col-span-2">
+      <ArticleCard {...articles[0]} />
+    </div>
+    <div className="space-y-4">
+      <div className="bg-white rounded-lg p-6 shadow-sm border hover:shadow-lg transition-shadow cursor-pointer">
+        <div className="flex items-start space-x-4">
+          <img 
+            src={articles[1].imageUrl} 
+            alt={articles[1].title}
+            className="w-20 h-20 rounded-lg object-cover flex-shrink-0"
+          />
+          <div className="flex-1 min-w-0">
+            <span className="text-xs font-medium text-blue-600 mb-1 block">{articles[1].category}</span>
+            <h3 className="font-bold text-gray-900 mb-2 line-clamp-2 text-sm hover:text-blue-600 transition-colors">
+              {articles[1].title}
+            </h3>
+            <p className="text-gray-600 text-xs mb-2 line-clamp-2">
+              {articles[1].excerpt}
+            </p>
+            <div className="flex items-center justify-between text-xs text-gray-500">
+              <span>{articles[1].author}</span>
+              <span>{articles[1].readTime}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
+// Layout 3: Horizontal cards
+const Layout3 = ({ articles }: { articles: typeof articles }) => (
+  <div className="space-y-6 mb-8">
+    {articles.map((article) => (
+      <div key={article.id} className="bg-white rounded-lg shadow-sm border hover:shadow-lg transition-all duration-300 cursor-pointer group">
+        <div className="flex flex-col md:flex-row">
+          <div className="md:w-1/3">
+            <img 
+              src={article.imageUrl} 
+              alt={article.title}
+              className="w-full h-48 md:h-full object-cover rounded-t-lg md:rounded-l-lg md:rounded-t-none group-hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <div className="md:w-2/3 p-6">
+            <div className="flex items-center justify-between mb-4">
+              <span className="text-sm font-medium text-blue-600 bg-blue-50 px-3 py-1 rounded-full">{article.category}</span>
+              <span className="text-sm text-gray-500">{article.readTime}</span>
+            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+              {article.title}
+            </h3>
+            <p className="text-gray-600 mb-4 line-clamp-2">
+              {article.excerpt}
+            </p>
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                <span className="text-blue-600 text-xs font-medium">
+                  {article.author.split(' ').map(n => n[0]).join('')}
+                </span>
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-900">{article.author}</p>
+                <p className="text-xs text-gray-500">{article.date}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+);
+
 const Index = () => {
   const { toast } = useToast();
 
@@ -87,6 +171,12 @@ const Index = () => {
       description: "Thank you for subscribing to our newsletter.",
     });
   };
+
+  // Group articles in pairs for different layouts
+  const articlePairs = [];
+  for (let i = 0; i < articles.length; i += 2) {
+    articlePairs.push(articles.slice(i, i + 2));
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 font-poppins">
@@ -99,14 +189,17 @@ const Index = () => {
           <div className="lg:col-span-2">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">Latest Stories</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              {articles.map((article, index) => (
-                <ArticleCard
-                  key={index}
-                  {...article}
-                />
-              ))}
-            </div>
+            {articlePairs.map((pair, index) => {
+              const layoutIndex = index % 3;
+              
+              if (layoutIndex === 0) {
+                return <Layout1 key={index} articles={pair} />;
+              } else if (layoutIndex === 1) {
+                return <Layout2 key={index} articles={pair} />;
+              } else {
+                return <Layout3 key={index} articles={pair} />;
+              }
+            })}
             
             <Pagination />
           </div>
