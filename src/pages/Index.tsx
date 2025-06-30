@@ -1,4 +1,3 @@
-
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import ArticleCard from '@/components/ArticleCard';
@@ -8,7 +7,19 @@ import NewsletterSignup from '@/components/NewsletterSignup';
 import Pagination from '@/components/Pagination';
 import { useToast } from "@/hooks/use-toast"
 
-const articles = [
+interface Article {
+  id: string;
+  title: string;
+  excerpt: string;
+  author: string;
+  date: string;
+  readTime: string;
+  category: string;
+  categoryColor: string;
+  imageUrl: string;
+}
+
+const articles: Article[] = [
   {
     id: "1",
     title: "Annual Hackathon Breaks Participation Records",
@@ -78,7 +89,7 @@ const articles = [
 ];
 
 // Layout 1: Standard grid (2 columns)
-const Layout1 = ({ articles }: { articles: typeof articles }) => (
+const Layout1 = ({ articles }: { articles: Article[] }) => (
   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
     {articles.map((article) => (
       <ArticleCard key={article.id} {...article} />
@@ -87,7 +98,7 @@ const Layout1 = ({ articles }: { articles: typeof articles }) => (
 );
 
 // Layout 2: Featured + List (one large, one small)
-const Layout2 = ({ articles }: { articles: typeof articles }) => (
+const Layout2 = ({ articles }: { articles: Article[] }) => (
   <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
     <div className="lg:col-span-2">
       <ArticleCard {...articles[0]} />
@@ -120,7 +131,7 @@ const Layout2 = ({ articles }: { articles: typeof articles }) => (
 );
 
 // Layout 3: Horizontal cards
-const Layout3 = ({ articles }: { articles: typeof articles }) => (
+const Layout3 = ({ articles }: { articles: Article[] }) => (
   <div className="space-y-6 mb-8">
     {articles.map((article) => (
       <div key={article.id} className="bg-white rounded-lg shadow-sm border hover:shadow-lg transition-all duration-300 cursor-pointer group">
