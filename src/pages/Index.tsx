@@ -1,5 +1,3 @@
-
-import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import ArticleCard from '@/components/ArticleCard';
 import CategoriesSidebar from '@/components/CategoriesSidebar';
@@ -90,7 +88,6 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 font-poppins">
-      <Header />
       <HeroSection />
       
       <div className="max-w-7xl mx-auto px-6 py-12">

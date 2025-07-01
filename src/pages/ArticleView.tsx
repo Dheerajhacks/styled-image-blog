@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import Header from '@/components/Header';
 import CategoriesSidebar from '@/components/CategoriesSidebar';
 import TrendingPosts from '@/components/TrendingPosts';
 import NewsletterSignup from '@/components/NewsletterSignup';
@@ -55,7 +54,6 @@ const ArticleView = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 font-poppins">
-      <Header />
       
       {/* Hero Section with Article Image */}
       <div className="relative h-96 bg-cover bg-center" style={{

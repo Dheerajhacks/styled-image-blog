@@ -1,12 +1,10 @@
 
 import React from 'react';
 import { Star, Users, BarChart3, MessageSquare, UserCheck, TrendingUp } from 'lucide-react';
-import Header from '@/components/Header';
 
 const AmbassadorPage = () => {
   return (
     <div className="min-h-screen bg-gray-50 font-poppins">
-      <Header />
       
       {/* Hero Section */}
       <div className="bg-gradient-to-r from-gray-100 to-white py-12 sm:py-16 px-4 sm:px-6">
@@ -20,7 +18,7 @@ const AmbassadorPage = () => {
             Lead your campus, organize events, and gain valuable leadership experience while building meaningful connections.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
-            <button className="bg-purple-600 text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
+            <button className="bg-almost-black text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors">
               Apply Now
             </button>
             <button className="border border-gray-300 text-gray-700 px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors">
