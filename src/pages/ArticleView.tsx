@@ -1,3 +1,4 @@
+
 import { useParams } from 'react-router-dom';
 import Header from '@/components/Header';
 import CategoriesSidebar from '@/components/CategoriesSidebar';
@@ -5,6 +6,7 @@ import TrendingPosts from '@/components/TrendingPosts';
 import NewsletterSignup from '@/components/NewsletterSignup';
 import MobileAppPromo from '@/components/MobileAppPromo';
 import LatestStories from '@/components/LatestStories';
+import AppDownload from '@/components/AppDownload';
 import ClassicLayout from '@/components/ArticleLayouts/ClassicLayout';
 import CardLayout from '@/components/ArticleLayouts/CardLayout';
 import { useToast } from "@/hooks/use-toast"
@@ -264,6 +266,7 @@ const ArticleView = () => {
           
           {/* Sidebar - Always visible on the right */}
           <div className="space-y-8">
+            <AppDownload />
             <CategoriesSidebar />
             <TrendingPosts />
             <NewsletterSignup onSignup={handleNewsletterSignup} />
