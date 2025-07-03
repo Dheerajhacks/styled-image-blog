@@ -1,13 +1,18 @@
+
 import { useParams } from 'react-router-dom';
+// import Header from '@/components/Header';
 import CategoriesSidebar from '@/components/CategoriesSidebar';
 import TrendingPosts from '@/components/TrendingPosts';
 import NewsletterSignup from '@/components/NewsletterSignup';
 import MobileAppPromo from '@/components/MobileAppPromo';
 import LatestStories from '@/components/LatestStories';
+import AppDownload from '@/components/AppDownload';
+import ClassicLayout from '@/components/ArticleLayouts/ClassicLayout';
+import CardLayout from '@/components/ArticleLayouts/CardLayout';
+import { useToast } from "@/hooks/use-toast"
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
-import { useToast } from "@/hooks/use-toast"
 
 // Badge component merged inline
 const badgeVariants = cva(
@@ -52,46 +57,20 @@ const ArticleView = () => {
     });
   };
 
-  return (
-    <div className="min-h-screen bg-gray-50 font-poppins">
-      
-      {/* Hero Section with Article Image */}
-      <div className="relative h-96 bg-cover bg-center" style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1458&q=80')`
-      }}>
-        <div className="absolute inset-0 flex items-end">
-          <div className="max-w-7xl mx-auto px-6 pb-12 text-white">
-            <div className="mb-4">
-              <span className="text-sm opacity-90">May 5, 2025 • 5 min read</span>
-            </div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight max-w-4xl">
-              How the Spring Festival Transformed Campus Culture
-            </h1>
-            <p className="text-lg opacity-90 max-w-2xl mb-6">
-              A look back at the event that brought together over 2,000 students and changed how we celebrate diversity on campus.
-            </p>
-            <div className="flex items-center space-x-3">
-              <img 
-                src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
-                alt="Nandini Patel"
-                className="w-12 h-12 rounded-full object-cover"
-              />
-              <div>
-                <div className="font-medium">Nandini Patel</div>
-                <div className="text-sm opacity-75">Student Contributor</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg p-8 shadow-sm">
-              <div className="prose prose-lg max-w-none">
-                <p className="text-gray-700 leading-relaxed mb-6">
+  // Determine layout based on article ID
+  const renderArticleLayout = () => {
+    const articleId = id ? parseInt(id) : 1;
+    
+    if (articleId % 3 === 2) {
+      return <ClassicLayout onNewsletterSignup={handleNewsletterSignup} />;
+    } else if (articleId % 3 === 0) {
+      return <CardLayout onNewsletterSignup={handleNewsletterSignup} />;
+    }
+    
+    // Default layout (original design) for articles where id % 3 === 1
+    return (
+      <div className="bg-white rounded-lg p-8 shadow-sm">
+        <p className="text-gray-700 leading-relaxed mb-6">
                   The annual Spring Festival celebration has become a cornerstone event in our campus calendar, but few know the story of how it began and the profound impact it has had on our university's culture of inclusivity and diversity.
                 </p>
                 
@@ -233,22 +212,72 @@ const ArticleView = () => {
                     </div>
                   </div>
                 </div>
+                <MobileAppPromo />
+      </div>
+    );
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 font-poppins">
+      {/* <Header /> */}
+      
+      {/* Hero Section for default layout only */}
+      {(() => {
+        const articleId = id ? parseInt(id) : 1;
+        if (articleId % 3 === 1) {
+          return (
+            <div className="relative h-96 bg-cover bg-center" style={{
+              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1541961017774-22349e4a1262?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1458&q=80')`
+            }}>
+              <div className="absolute inset-0 flex items-end">
+                <div className="max-w-7xl mx-auto px-6 pb-12 text-white">
+                  <div className="mb-4">
+                    <span className="text-sm opacity-90">May 5, 2025 • 5 min read</span>
+                  </div>
+                  <h1 className="text-4xl md:text-5xl font-bold mb-4 leading-tight max-w-4xl">
+                    How the Spring Festival Transformed Campus Culture
+                  </h1>
+                  <p className="text-lg opacity-90 max-w-2xl mb-6">
+                    A look back at the event that brought together over 2,000 students and changed how we celebrate diversity on campus.
+                  </p>
+                  <div className="flex items-center space-x-3">
+                    <img 
+                      src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80"
+                      alt="Nandini Patel"
+                      className="w-12 h-12 rounded-full object-cover"
+                    />
+                    <div>
+                      <div className="font-medium">Nandini Patel</div>
+                      <div className="text-sm opacity-75">Student Contributor</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+          );
+        }
+      })()}
+
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2">
+            {renderArticleLayout()}
           </div>
           
-          {/* Sidebar */}
+          {/* Sidebar - Always visible on the right */}
           <div className="space-y-8">
+            <AppDownload />
             <CategoriesSidebar />
             <TrendingPosts />
-            <NewsletterSignup onSignup={handleNewsletterSignup} />
+            {/* <NewsletterSignup onSignup={handleNewsletterSignup} /> */}
           </div>
         </div>
         
-        {/* Mobile App Promo Section */}
+        {/* Mobile App Promo Section
         <div className="mt-16">
           <MobileAppPromo />
-        </div>
+        </div> */}
         
         {/* Latest Stories Section */}
         <div className="mt-12">
